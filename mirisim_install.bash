@@ -357,7 +357,7 @@ if [ ! -d $MIRISIM_ROOT ]; then
 fi
 
 # Check the version of the files we need.
-$download http://www.miricle.org/MIRICLE2/$flavor/$version/pysynphot_data
+$download http://www.miricle.org/mirisim/$flavor/$version/pysynphot_data
 data_version=`cat pysynphot_data`
 installData=0
 
