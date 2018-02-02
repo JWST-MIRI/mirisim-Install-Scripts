@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.00"
+mirisim_version="1.01"
 
 # Make it possible to print bold characters
 bold=`tput bold`
@@ -209,7 +209,7 @@ function setFlavorName {
 function checkError {
   if [ ! $1 -eq 0 ]; then
     printf "${bold}Installation failed!${normal}\n"
-    echo "Please raise a bug at http://www.miricle.org/bugzilla/ and attach your logfile: $LOG/log.txt"
+    echo "More information can be found in logfile: $LOG/log.txt"
     rm miricle-*-py27.0.txt
     exit
   fi
@@ -401,6 +401,7 @@ echoLog " ${bold}export PYSYN_CDBS=\$MIRISIM_ROOT/cdbs/${normal}"
 echoLog ""
 echoLog " ${bold}source activate mirisim$flavorName${normal}"
 echoLog ""
+echoLog "Add these lines in your shell startup script (typically .bash_profile or .bashrc) to be able to run mirisim in the future."
 echoLog "To switch back to the system python version:"
 echoLog " ${bold}source deactivate${normal}"
 echoLog ""
