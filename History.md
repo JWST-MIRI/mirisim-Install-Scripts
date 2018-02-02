@@ -2,5 +2,8 @@
 
 ## Version 1.x
 
++ ### 02/02/2018
+ + 1.01 (Wim De Meester): Bug 388.
+
 + ### 25/10/2017
  + 1.00 (Wim De Meester): First version of the mirisim install script.
