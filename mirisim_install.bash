@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.01"
+mirisim_version="1.02"
 
 # Make it possible to print bold characters
 bold=`tput bold`
@@ -342,14 +342,21 @@ else
   os="linux"
 fi
 
-verboseEcho "Downloading conda packages from http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py27.0.txt"
-$download http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py27.0.txt
+pythonVersion="27"
+if [[ "$flavor" == "test" ]]; then
+  if [[ $version -ge 16 ]]; then
+    pythonVersion="35"
+  fi  
+fi
+
+verboseEcho "Downloading conda packages from http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt"
+$download http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
 checkError ${PIPESTATUS[0]}
 
 echoLog "Creating the mirisim$flavorName conda environment"
-conda create --yes --name mirisim$flavorName --file miricle-$os-py27.0.txt 2>&1 | tee -a $LOG/log.txt
+conda create --yes --name mirisim$flavorName --file miricle-$os-py*.0.txt 2>&1 | tee -a $LOG/log.txt
 checkError ${PIPESTATUS[0]}
-rm miricle-$os-py27.0.txt
+rm miricle-$os-py*.0.txt
 
 # Install the datafiles
 if [ ! -d $MIRISIM_ROOT ]; then
