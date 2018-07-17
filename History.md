@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 06/07/2018
+ + 1.03 (Wim De Meester): Add python 3.5 in the stable release.
+
 + ### 04/07/2018
  + 1.02 (Wim De Meester): Add python 3.5 in the test release.
 
