@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.03"
+mirisim_version="1.04"
 
 # Make it possible to print bold characters
 bold=`tput bold`
@@ -223,7 +223,7 @@ do
     "--help")
      echo "mirisim_install.bash is the installation script for mirisim, the simulator for the MIRI Instrument of JWST."
      echo ""
-     echo "To be able to install mirisim, you need at the Anaconda python environment, at least version 4.2. You need the python 2.7 version."
+     echo "To be able to install mirisim, you need at the Anaconda python environment, at least version 4.2. You need the python 3 version."
      echo "You can download Anaconda from https://www.continuum.io/downloads"
      echo ""
      echo "Auxiliary data will be installed in \$HOME/mirisim. If you want to install this data in another location, you can set the MIRISIM_ROOT environment variable to this location, or you can use the --path option together with the script."
