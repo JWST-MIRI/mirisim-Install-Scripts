@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 28/02/2019
+ + 1.04 (Wim De Meester): Bug 549.
+
 + ### 06/07/2018
  + 1.03 (Wim De Meester): Add python 3.5 in the stable release.
 
