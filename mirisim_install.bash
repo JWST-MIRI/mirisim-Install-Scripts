@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.04"
+mirisim_version="1.05"
 
 # Make it possible to print bold characters
 bold=`tput bold`
@@ -78,7 +78,7 @@ function checkInternet {
   verboseEcho "Internet connection found. Continuing the installation."
 
   # Determine whether www.miricle.org is up.
-  if ! curl --silent --head miricle.org>/dev/null; then
+  if ! curl --silent --head https://www.miricle.org>/dev/null; then
     echoLog "www.miricle.org is down."
     echoLog "Please try to rerun mirisim_install.bash a little later."
     exit
@@ -148,7 +148,7 @@ function getVersionNumberToInstall {
     verboseEcho "Version number $version is given as parameter. Will try to install this version.";
   fi
 
-  $download http://www.miricle.org/mirisim/$flavor/buildNumbers
+  $download https://www.miricle.org/mirisim/$flavor/buildNumbers
 
   while read line; do
     if [ -n "$line" ] ; then
@@ -354,8 +354,8 @@ if [[ "$flavor" == "stable" ]]; then
   fi  
 fi
 
-verboseEcho "Downloading conda packages from http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt"
-$download http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
+verboseEcho "Downloading conda packages from https://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt"
+$download https://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
 checkError ${PIPESTATUS[0]}
 
 echoLog "Creating the mirisim$flavorName conda environment"
@@ -369,7 +369,7 @@ if [ ! -d $MIRISIM_ROOT ]; then
 fi
 
 # Check the version of the files we need.
-$download http://www.miricle.org/mirisim/$flavor/$version/pysynphot_data
+$download https://www.miricle.org/mirisim/$flavor/$version/pysynphot_data
 data_version=`cat pysynphot_data`
 installData=0
 
@@ -382,7 +382,7 @@ if [[ "$installData" == "1" ]]; then
   echoLog "${bold}Installing the datafiles${normal}"
   rm -rf $MIRISIM_ROOT/cdbs
   cd $MIRISIM_ROOT
-  $download http://www.miricle.org/MIRICLE/pysynphot_data-$data_version.tar.gz
+  $download https://www.miricle.org/MIRICLE/pysynphot_data-$data_version.tar.gz
   tar zxf pysynphot_data-$data_version.tar.gz
   rm -f pysynphot_dat*
   mv $cwd/pysynphot_data $MIRISIM_ROOT
