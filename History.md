@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 26/06/2019
+ + 1.05 (Wim De Meester): Make work with https protocol.
+
 + ### 28/02/2019
  + 1.04 (Wim De Meester): Bug 549.
 
