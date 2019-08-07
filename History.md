@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 28/07/2019
+ + 1.06 (Wim De Meester): Revert usage of https.
+
 + ### 26/06/2019
  + 1.05 (Wim De Meester): Make work with https protocol.
 
