@@ -2,7 +2,10 @@
 
 ## Version 1.x
 
-+ ### 28/07/2019
++ ### 08/08/2019
+ + 1.07 (Wim De Meester): Bug 554: source activate root advice in install script is out of date
+
++ ### 07/08/2019
  + 1.06 (Wim De Meester): Revert usage of https.
 
 + ### 26/06/2019

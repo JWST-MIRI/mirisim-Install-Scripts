@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.06"
+mirisim_version="1.07"
 
 # Make it possible to print bold characters
 bold=`tput bold`
@@ -132,7 +132,7 @@ function checkAnacondaInstalled {
     echoLog ""
     echoLog "${bold}First install Anaconda python distribution: https://www.continuum.io/downloads${normal}"
     echoLog "If anaconda is already installed on your computer, execute"
-    echoLog "  ${bold}source activate root${normal}"
+    echoLog "  ${bold}conda activate base${normal}"
     exit
   fi
 }
@@ -183,7 +183,7 @@ function getVersionNumberToInstall {
           echoLog ""
           echoLog "You can use it by executing the following command:"
           echoLog ""
-          echoLog "source activate $condaEnvName${normal}"
+          echoLog "conda activate $condaEnvName${normal}"
           echoLog ""
           read -p "Do you really want to reinstall this version? " -n 1 -r
           echo    # (optional) move to a new line
@@ -303,7 +303,7 @@ checkError ${PIPESTATUS[0]}
 LCCTYPE=$LC_CTYPE
 unset LC_CTYPE
 
-source activate root
+conda activate base
 checkError ${PIPESTATUS[0]}
 
 # Remove all old mirisim environments if the clean option is selected
@@ -391,7 +391,7 @@ else
   rm $cwd/pysynphot_data
 fi
 
-source activate mirisim$flavorName
+conda activate mirisim$flavorName
 
 # Write version number to the env directory
 if [ -z ${CONDA_PREFIX+x} ]; then
@@ -411,7 +411,7 @@ echoLog "To use the mirisim${flavorName} environment:"
 echoLog " ${bold}export MIRISIM_ROOT=$MIRISIM_ROOT${normal}"
 echoLog " ${bold}export PYSYN_CDBS=\$MIRISIM_ROOT/cdbs/${normal}"
 echoLog ""
-echoLog " ${bold}source activate mirisim$flavorName${normal}"
+echoLog " ${bold}conda activate mirisim$flavorName${normal}"
 echoLog ""
 echoLog "Add these lines in your shell startup script (typically .bash_profile or .bashrc) to be able to run mirisim in the future."
 echoLog "To switch back to the system python version:"
