@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.07"
+mirisim_version="1.08"
 
 # Make it possible to print bold characters
 bold=`tput bold`
@@ -344,12 +344,16 @@ fi
 
 pythonVersion="27"
 if [[ "$flavor" == "test" ]]; then
-  if [[ $version -ge 16 ]]; then
+  if [[ $version -ge 30 ]]; then
+    pythonVersion="36"
+  elif [[ $version -ge 16 ]]; then
     pythonVersion="35"
   fi  
 fi
 if [[ "$flavor" == "stable" ]]; then
-  if [[ $version -ge 5 ]]; then
+  if [[ $version -ge 10 ]]; then
+    pythonVersion="36"
+  elif [[ $version -ge 5 ]]; then
     pythonVersion="35"
   fi  
 fi

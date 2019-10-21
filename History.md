@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 21/10/2019
+ + 1.08 (Wim De Meester): Use python 3.6.
+
 + ### 08/08/2019
  + 1.07 (Wim De Meester): Bug 554: source activate root advice in install script is out of date
 
