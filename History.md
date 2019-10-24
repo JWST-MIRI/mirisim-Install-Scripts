@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 24/10/2019
+ + 1.09 (Wim De Meester): Bug fixes.
+
 + ### 21/10/2019
  + 1.08 (Wim De Meester): Use python 3.6.
 

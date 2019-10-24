@@ -17,7 +17,14 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.08"
+mirisim_version="1.09"
+
+# Some conda commands to make miricle work.
+CONDA_PREFIX=$(conda info --base)
+source $CONDA_PREFIX/etc/profile.d/conda.sh
+conda config --remove channels http://ssb.stsci.edu/astroconda-dev/
+conda config --remove channels https://ssb.stsci.edu/astroconda
+conda config --remove channels conda-forge
 
 # Make it possible to print bold characters
 bold=`tput bold`
@@ -210,7 +217,7 @@ function checkError {
   if [ ! $1 -eq 0 ]; then
     printf "${bold}Installation failed!${normal}\n"
     echo "More information can be found in logfile: $LOG/log.txt"
-    rm miricle-*-py27.0.txt
+    rm -f miricle-*-py*.0.txt
     exit
   fi
 }
