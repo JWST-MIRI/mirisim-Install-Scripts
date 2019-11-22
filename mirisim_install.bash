@@ -17,14 +17,14 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.09"
+mirisim_version="1.10"
 
 # Some conda commands to make miricle work.
 CONDA_PREFIX=$(conda info --base)
 source $CONDA_PREFIX/etc/profile.d/conda.sh
-conda config --remove channels http://ssb.stsci.edu/astroconda-dev/
-conda config --remove channels https://ssb.stsci.edu/astroconda
-conda config --remove channels conda-forge
+conda config --remove channels http://ssb.stsci.edu/astroconda-dev/ 2>/dev/null
+conda config --remove channels https://ssb.stsci.edu/astroconda 2>/dev/null
+conda config --remove channels conda-forge 2>/dev/null
 
 # Make it possible to print bold characters
 bold=`tput bold`

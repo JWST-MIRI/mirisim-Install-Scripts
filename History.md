@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 22/11/2019
+ + 1.10 (Wim De Meester): Remove conda error message.
+
 + ### 24/10/2019
  + 1.09 (Wim De Meester): Bug fixes.
 
