@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.10"
+mirisim_version="1.11"
 
 # Some conda commands to make miricle work.
 CONDA_PREFIX=$(conda info --base)
@@ -155,7 +155,7 @@ function getVersionNumberToInstall {
     verboseEcho "Version number $version is given as parameter. Will try to install this version.";
   fi
 
-  $download http://www.miricle.org/mirisim/$flavor/buildNumbers
+  $download https://jenkins.miricle.org/mirisim/$flavor/buildNumbers
 
   while read line; do
     if [ -n "$line" ] ; then
@@ -365,8 +365,8 @@ if [[ "$flavor" == "stable" ]]; then
   fi  
 fi
 
-verboseEcho "Downloading conda packages from http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt"
-$download http://www.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
+verboseEcho "Downloading conda packages from https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt"
+$download https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
 checkError ${PIPESTATUS[0]}
 
 echoLog "Creating the mirisim$flavorName conda environment"
@@ -380,7 +380,7 @@ if [ ! -d $MIRISIM_ROOT ]; then
 fi
 
 # Check the version of the files we need.
-$download http://www.miricle.org/mirisim/$flavor/$version/pysynphot_data
+$download https://jenkins.miricle.org/mirisim/$flavor/$version/pysynphot_data
 data_version=`cat pysynphot_data`
 installData=0
 
@@ -393,7 +393,7 @@ if [[ "$installData" == "1" ]]; then
   echoLog "${bold}Installing the datafiles${normal}"
   rm -rf $MIRISIM_ROOT/cdbs
   cd $MIRISIM_ROOT
-  $download http://www.miricle.org/MIRICLE/pysynphot_data-$data_version.tar.gz
+  $download https://jenkins.miricle.org/MIRICLE/pysynphot_data-$data_version.tar.gz
   tar zxf pysynphot_data-$data_version.tar.gz
   rm -f pysynphot_dat*
   mv $cwd/pysynphot_data $MIRISIM_ROOT

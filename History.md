@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 13/02/2020
+ + 1.11 (Wim De Meester): Move to jenkins.miricle.org.
+
 + ### 22/11/2019
  + 1.10 (Wim De Meester): Remove conda error message.
 
