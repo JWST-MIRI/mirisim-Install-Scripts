@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.11"
+mirisim_version="1.12"
 
 # Some conda commands to make miricle work.
 CONDA_PREFIX=$(conda info --base)
@@ -51,21 +51,11 @@ function checkInternet {
   # determine download method
   #
   internet=1
-  which wget 1> /dev/null
+  jenkins=1
+  which curl 1> /dev/null
   if [ $? = 0 ] ; then
-    verboseEcho "Using wget to download packages."
-    download="wget -nd -q "
-
-    wget --spider -q http://www.google.com
-    if [ "$?" != 0 ]; then
-      internet=0
-    fi
-  else
-    which curl 1> /dev/null
-    if [ $? = 0 ] ; then
-      verboseEcho "Using curl to download packages."
-      download="curl -O --silent "
-    fi
+    verboseEcho "Using curl to download packages."
+    download="curl -O --silent -u miricle:$passwd "
 
     # Check for internet connection
     if curl --silent --head http://www.google.com/ | egrep "20[0-9] Found|30[0-9] Found|200 OK" >/dev/null
@@ -74,23 +64,43 @@ function checkInternet {
     else
       internet=0
     fi
+
+    # Determine whether www.miricle.org is up.
+    if ! curl --silent --head https://jenkins.miricle.org>/dev/null; then
+      jenkins=0
+    fi
+  else
+    which wget 1> /dev/null
+    if [ $? = 0 ] ; then
+      verboseEcho "Using wget to download packages."
+      download="wget -nd -q --user=miricle --password=$passwd "
+
+      wget --spider -q http://www.google.com
+      if [ "$?" != 0 ]; then
+        internet=0
+      fi
+
+      wget --spider -q https://jenkins.miricle.org
+      if [ "$?" != 0 ]; then
+        jenkins=0
+      fi
+    fi
   fi
 
   if [ $internet -eq 0 ]; then
       echoLog "No internet connection found!"
-      echoLog "Please rerun mirisim_install.bash with a working internet connection to install mirisim."
+      echoLog "Please rerun MIRICLE_install.bash with a working internet connection to install MIRICLE."
       exit
   fi
 
   verboseEcho "Internet connection found. Continuing the installation."
 
-  # Determine whether www.miricle.org is up.
-  if ! curl --silent --head http://www.miricle.org>/dev/null; then
-    echoLog "www.miricle.org is down."
-    echoLog "Please try to rerun mirisim_install.bash a little later."
+  if [ $jenkins -eq 0 ]; then
+    echoLog "jenkins.miricle.org is down."
+    echoLog "Please try to rerun MIRICLE_install.bash a little later."
     exit
   fi
-  verboseEcho "www.miricle.org is up and running."
+  verboseEcho "jenkins.miricle.org is up and running."
 
   if [ -z "$download" ] ; then
     echoLog "Neither wget nor curl is present. Please have your system manager install either of them."

@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 20/02/2020
+ + 1.12 (Wim De Meester): First check for existence of curl, then for wget.
+
 + ### 13/02/2020
  + 1.11 (Wim De Meester): Move to jenkins.miricle.org.
 
