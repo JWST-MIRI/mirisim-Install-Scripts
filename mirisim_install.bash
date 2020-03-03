@@ -118,7 +118,7 @@ function checkUpdateOfScript {
   verboseEcho ""
   verboseEcho "Checking if there is a newer version of the installation script available..."
   rm -f mirisim_install_version
-  $download http://miri.ster.kuleuven.be/mirisim/mirisim_install_version
+  $download https://jenkins.miricle.org/install/mirisim/mirisim_install_version
   version_on_server=`cat mirisim_install_version`
   verboseEcho "Version of the used installation script is $mirisim_version. On the server, I found $version_on_server."
   uptodate=0
@@ -131,7 +131,7 @@ function checkUpdateOfScript {
     verboseEcho "Updating the mirisim install script."
     rm -f mirisim_install.bash
     rm -f mirisim_install_version
-    $download http://miri.ster.kuleuven.be/mirisim/mirisim_install.bash
+    $download https://jenkins.miricle.org/install/mirisim/mirisim_install.bash
     chmod +x mirisim_install.bash
     echoLog "mirisim installation script is updated."
     echoLog "Please rerun mirisim_install.bash to install mirisim."

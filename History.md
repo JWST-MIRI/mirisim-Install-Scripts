@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 03/03/2020
+ + 1.13 (Wim De Meester): Fixes after move of the server to new machine.
+
 + ### 20/02/2020
  + 1.12 (Wim De Meester): First check for existence of curl, then for wget.
 
