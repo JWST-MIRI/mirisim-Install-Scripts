@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.12"
+mirisim_version="1.13"
 
 # Some conda commands to make miricle work.
 CONDA_PREFIX=$(conda info --base)
