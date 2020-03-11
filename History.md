@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 11/03/2020
+ + 1.14 (Wim De Meester): Use correct link to pysynphot_data.
+
 + ### 03/03/2020
  + 1.13 (Wim De Meester): Fixes after move of the server to new machine.
 

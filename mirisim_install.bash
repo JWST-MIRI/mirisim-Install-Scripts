@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.13"
+mirisim_version="1.14"
 
 # Some conda commands to make miricle work.
 CONDA_PREFIX=$(conda info --base)
@@ -394,7 +394,7 @@ $download https://jenkins.miricle.org/mirisim/$flavor/$version/pysynphot_data
 data_version=`cat pysynphot_data`
 installData=0
 
-# Compare the installed vesrion with the version on the server
+# Compare the installed version with the version on the server
 cmp -s pysynphot_data $MIRISIM_ROOT/pysynphot_data || installData=1
 checkError ${PIPESTATUS[0]}
 
@@ -403,7 +403,7 @@ if [[ "$installData" == "1" ]]; then
   echoLog "${bold}Installing the datafiles${normal}"
   rm -rf $MIRISIM_ROOT/cdbs
   cd $MIRISIM_ROOT
-  $download https://jenkins.miricle.org/MIRICLE/pysynphot_data-$data_version.tar.gz
+  $download https://jenkins.miricle.org/MIRICLE2/pysynphot_data/pysynphot_data-$data_version.tar.gz
   tar zxf pysynphot_data-$data_version.tar.gz
   rm -f pysynphot_dat*
   mv $cwd/pysynphot_data $MIRISIM_ROOT
