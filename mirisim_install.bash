@@ -17,7 +17,7 @@
 #    --verbose
 #      show all installed python packages at the end of the installation
 
-mirisim_version="1.14"
+mirisim_version="1.15"
 
 # Some conda commands to make miricle work.
 CONDA_PREFIX=$(conda info --base)
@@ -361,7 +361,9 @@ fi
 
 pythonVersion="27"
 if [[ "$flavor" == "test" ]]; then
-  if [[ $version -ge 30 ]]; then
+  if [[ $version -ge 33 ]]; then
+    pythonVersion="37"
+  elif [[ $version -ge 30 ]]; then
     pythonVersion="36"
   elif [[ $version -ge 16 ]]; then
     pythonVersion="35"
@@ -375,14 +377,39 @@ if [[ "$flavor" == "stable" ]]; then
   fi  
 fi
 
-verboseEcho "Downloading conda packages from https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt"
-$download https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
-checkError ${PIPESTATUS[0]}
+if [[ $pythonVersion == "37" ]]; then
+    echoLog "Creating base anaconda environment"
+    $download https://jenkins.miricle.org/mirisim/$flavor/$version/conda_python_$os-stable-deps.txt
+    conda create --yes --name mirisim$flavorName --file conda_python_$os-stable-deps.txt 2>&1 | tee -a $LOG/log.txt
+    checkError ${PIPESTATUS[0]}
+    conda activate mirisim$flavorName
+    checkError ${PIPESTATUS[0]}
+    rm conda_python_$os-stable-deps.txt
 
-echoLog "Creating the mirisim$flavorName conda environment"
-conda create --yes --name mirisim$flavorName --file miricle-$os-py*.0.txt 2>&1 | tee -a $LOG/log.txt
-checkError ${PIPESTATUS[0]}
-rm miricle-$os-py*.0.txt
+    echoLog "Install all dependencies"
+    $download https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-deps.txt
+    pip install -r miricle-$os-deps.txt
+    checkError ${PIPESTATUS[0]}
+    rm miricle-$os-deps.txt
+
+    echoLog "Install miricle packages"
+    $download https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
+    chmod +x miricle-$os-py$pythonVersion.0.txt
+    checkError ${PIPESTATUS[0]}
+
+    ./miricle-$os-py$pythonVersion.0.txt 2>&1 | tee -a $LOG/log.txt
+    checkError ${PIPESTATUS[0]}
+    rm miricle-$os-py*.0.txt    
+else
+    verboseEcho "Downloading conda packages from https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt"
+    $download https://jenkins.miricle.org/mirisim/$flavor/$version/miricle-$os-py$pythonVersion.0.txt
+    checkError ${PIPESTATUS[0]}
+
+    echoLog "Creating the mirisim$flavorName conda environment"
+    conda create --yes --name mirisim$flavorName --file miricle-$os-py*.0.txt 2>&1 | tee -a $LOG/log.txt
+    checkError ${PIPESTATUS[0]}
+    rm miricle-$os-py*.0.txt
+fi
 
 # Install the datafiles
 if [ ! -d $MIRISIM_ROOT ]; then
