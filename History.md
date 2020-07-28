@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 28/07/2020
+ + 1.15 (Wim De Meester): Update to version 2.3 of mirisim
+
 + ### 11/03/2020
  + 1.14 (Wim De Meester): Use correct link to pysynphot_data.
 
