@@ -370,7 +370,9 @@ if [[ "$flavor" == "test" ]]; then
   fi  
 fi
 if [[ "$flavor" == "stable" ]]; then
-  if [[ $version -ge 10 ]]; then
+  if [[ $version -ge 11 ]]; then
+    pythonVersion="37"
+  elif [[ $version -ge 10 ]]; then
     pythonVersion="36"
   elif [[ $version -ge 5 ]]; then
     pythonVersion="35"

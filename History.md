@@ -2,6 +2,9 @@
 
 ## Version 1.x
 
++ ### 31/08/2020
+ + 1.16 (Wim De Meester): Update to stable version 2.3 of mirisim
+
 + ### 28/07/2020
  + 1.15 (Wim De Meester): Update to version 2.3 of mirisim
 
